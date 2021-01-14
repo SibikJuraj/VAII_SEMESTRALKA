@@ -6,6 +6,7 @@ use App\App;
 ?>
 
 
+
 <html>
 <head>
     <title>INZERATIK</title>
@@ -16,7 +17,7 @@ use App\App;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="module" src="../JavaScript/selected.js"></script>
+    <script type = "text/javascript" src="../JavaScript/selected.js"> </script>
 
     <link rel="stylesheet" href="public/style.css">
 </head>
@@ -31,8 +32,8 @@ use App\App;
         <div class="menu collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
 
-                <li id="inzerat" class="nav-item active">
-                    <a href="?c=Inzerat" class="btn btn-block tlacidlo" ">Nové inzeráty</a>
+                <li id="inzerat"  class="nav-item ">
+                    <a href="?c=Inzerat" class="btn btn-block tlacidlo ">Nové inzeráty</a>
                 </li>
                 <li id="kategorie" class="nav-item">
                     <a href="?c=Kategorie" class="btn btn-block tlacidlo">Kategórie</a>

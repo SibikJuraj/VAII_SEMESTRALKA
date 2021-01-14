@@ -10,6 +10,14 @@ class InzeratController extends AControllerBase
 {
 
 
+    public function __construct()
+    {
+        ?>
+        <script>var element = document.getElementById("inzerat");
+            element.classList.add("active"); </script>
+        <?php
+    }
+
     public function index()
     {
         return $this->html(Inzerat::getAll("id ORDER BY id DESC"));
