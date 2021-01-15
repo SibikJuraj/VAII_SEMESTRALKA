@@ -4,6 +4,7 @@ namespace App\Core;
 
 use App\App;
 use App\Core\Responses\JsonResponse;
+use App\Core\Responses\RedirectResponse;
 use App\Core\Responses\Response;
 use App\Core\Responses\ViewResponse;
 
@@ -19,6 +20,16 @@ abstract class AControllerBase
      * @var App
      */
      protected App $app;
+
+    /**
+     * AControllerBase constructor.
+     * @param App $app
+     */
+    public function __construct(App $app)
+     {
+
+         $this->app = $app;
+     }
 
     /**
      * Returns controller name (without Controller prefix)
@@ -40,15 +51,6 @@ abstract class AControllerBase
     }
 
     /**
-     * Method for injecting App object
-     * @param App $app
-     */
-    public function setApp(App $app)
-    {
-        $this->app = $app;
-    }
-
-    /**
      * Helper method for returning response type ViewResponse
      * @param null $data
      * @param null $viewName
@@ -61,7 +63,7 @@ abstract class AControllerBase
         } else {
             $viewName = is_string($viewName) ? ($this->app->getRouter()->getControllerName() . DIRECTORY_SEPARATOR . $viewName) : ($viewName['0'] . DIRECTORY_SEPARATOR . $viewName['1']);
         }
-        return new ViewResponse($viewName, $data);
+        return new ViewResponse($this->app, $viewName, $data);
     }
 
     /**
@@ -74,6 +76,11 @@ abstract class AControllerBase
         return new JsonResponse($data);
     }
 
+    public function redirect(string $redirectUrl)
+    {
+        return new RedirectResponse($redirectUrl);
+    }
+
     /**
      * Helper method for request
      * @return Request
@@ -81,6 +88,16 @@ abstract class AControllerBase
     public function request() : Request
     {
         return $this->app->getRequest();
+    }
+
+    /**
+     * Authorize action
+     * @param string $action
+     * @return bool
+     */
+    public function authorize(string $action)
+    {
+        return true;
     }
 
     /**

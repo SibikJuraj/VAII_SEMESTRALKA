@@ -2,6 +2,7 @@
 
 namespace App\Core\Responses;
 
+use App\App;
 use App\Config\Configuration;
 
 /**
@@ -11,18 +12,22 @@ use App\Config\Configuration;
  */
 class ViewResponse extends Response
 {
+    private App $app;
     private $viewName;
     private $layoutName = Configuration::ROOT_LAYOUT;
     private $data;
 
-    public function __construct($viewName, $data)
+    public function __construct($app, $viewName, $data)
     {
+        $this->app = $app;
         $this->viewName = $viewName;
         $this->data = $data;
     }
 
     public function generate() {
+
         $data = $this->data;
+        $auth = $this->app->getAuth();
 
         require "App" . DIRECTORY_SEPARATOR . "Views" . DIRECTORY_SEPARATOR . $this->viewName . ".view.php";
 

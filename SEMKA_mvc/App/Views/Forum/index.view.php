@@ -1,17 +1,18 @@
+<?php /** @var Array $data */ ?>
+
 <h1 >Fórum</h1>
 <hr/>
 
+<div class="nastred">
+    <a href="?c=Inzerat&a=Add" class="forumnova btn tlacidlo btn">Začať novú diskusiu </a>
+
+</div>
 
 <div class=" container">
 
-    <div class="row">
-        <div class="tlacidlo forum btn-block btn-large col-lg-12 col-md-12 col-sm-12 col-12 btn">
-            Návrhy na zlepšenie </div>
-        <div class="tlacidlo forum col-lg-12 col-md-12 col-sm-12 col-12 btn">
-            Problémy </div>
-        <div class="tlacidlo forumnova offset-lg-3 offset-md-3 offset-sm-4 offset-4 col-lg-6 col-md-6 col-sm-4 col-4 btn ">
-            Začať novú diskusiu </div>
-
+    <div">
+        <a href="?c=Forum&a=Detail&id=<?php $data->getId() ?>" class="forum btn tlacidlo col-lg-12 col-md-12 col-sm-12 col-12 btn">Návrhy na zlepšenie </a>
+        <a href="?c=Forum&a=Detail&id=<?php $data->getId() ?>" class="forum btn tlacidlo col-lg-12 col-md-12 col-sm-12 col-12 btn">Problémy </a>
 
     </div>
 

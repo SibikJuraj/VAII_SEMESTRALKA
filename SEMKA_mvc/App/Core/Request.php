@@ -32,6 +32,7 @@ class Request
 
     /**
      * Is request AJAX?
+     * This method works only, if you set the HTTP_X_REQUESTED_WITH header set to xmlhttprequest in JS ajax call
      * @return bool
      */
     public function isAjax(): bool

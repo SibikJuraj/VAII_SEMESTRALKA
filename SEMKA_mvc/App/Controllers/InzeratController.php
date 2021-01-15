@@ -10,17 +10,9 @@ class InzeratController extends AControllerBase
 {
 
 
-    public function __construct()
-    {
-        ?>
-        <script>var element = document.getElementById("inzerat");
-            element.classList.add("active"); </script>
-        <?php
-    }
-
     public function index()
     {
-        return $this->html(Inzerat::getAll("id ORDER BY id DESC"));
+        return $this->html(Inzerat::getAll("",[],"id DESC"));
     }
 
     public function add()
@@ -33,7 +25,7 @@ class InzeratController extends AControllerBase
         $inzerat->save();
 
 
-        return $this->html(Inzerat::getAll("id ORDER BY id DESC"),'index');
+        return $this->html(Inzerat::getAll("",[],"id DESC"),'index');
 
     }
 
@@ -69,7 +61,7 @@ class InzeratController extends AControllerBase
             $inzerat = Inzerat::getOne($_GET['id']);
             $inzerat->delete();
 
-            return $this->html(Inzerat::getAll("id ORDER BY id DESC"),'index');
+            return $this->html(Inzerat::getAll("",[],"id DESC"),'index');
         }
 
     }

@@ -1,12 +1,18 @@
-<?php /** @var Array $data */ ?>
+<?php /** @var Array $data */
+/** @var \App\Core\AAuthenticator $auth */
+?>
+
 
 <h1 >Nové inzeráty</h1>
 <hr/>
 
-<div class="nastred">
-    <a href="?c=Inzerat&a=Add" class="btn tlacidlo">+ Pridaj inzerát +</a>
+    <?php if ($auth->isLogged()) { ?>
+        <div class="nastred">
+            <a href="?c=Inzerat&a=Add" class="btn tlacidlo">+ Pridaj inzerát +</a>
 
-</div>
+        </div>
+    <?php } ?>
+
 
 <?php
 foreach ($data as $inzerat) { ?>

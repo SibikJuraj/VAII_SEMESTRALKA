@@ -13,13 +13,12 @@ class Router
     private $controllerName;
     private $action;
 
+    /**
+     * Process URL to get controller and action
+     */
     public function processURL()
     {
-        $fullControllerName = $this->getFullControllerName();
-        $this->controller = new $fullControllerName();
-
         $this->controllerName = $this->getControllerName();
-
         $this->action = $this->getAction();
     }
 
@@ -48,13 +47,5 @@ class Router
     public function getAction(): string
     {
         return (empty(trim(@$_GET['a'])) ? "index" : $_GET['a']);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getController()
-    {
-        return $this->controller;
     }
 }

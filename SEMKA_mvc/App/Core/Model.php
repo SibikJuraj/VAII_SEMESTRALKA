@@ -55,11 +55,11 @@ abstract class Model implements \JsonSerializable
      * @return static[]
      * @throws \Exception
      */
-    static public function getAll(string $whereClause = '', array $whereParams = [])
+    static public function getAll(string $whereClause = '', array $whereParams = [], $orderBy = '')
     {
         self::connect();
         try {
-            $sql = "SELECT * FROM " . self::getTableName() . ($whereClause=='' ? '' : " WHERE $whereClause");
+            $sql = "SELECT * FROM " . self::getTableName() . ($whereClause=='' ? '' : " WHERE $whereClause") . ($orderBy == '' ? '' : " ORDER BY $orderBy");
 
             $stmt = self::$connection->prepare($sql);
             $stmt->execute($whereParams);
@@ -120,7 +120,7 @@ abstract class Model implements \JsonSerializable
         try {
             $data = array_fill_keys(self::getDbColumns(), null);
             foreach ($data as $key => &$item) {
-                $item = $this->$key;
+                $item = isset($this->$key) ? $this->$key : null;
             }
             if ($data[self::$pkColumn] == null) {
                 $arrColumns = array_map(fn($item) => (':' . $item), array_keys($data));
