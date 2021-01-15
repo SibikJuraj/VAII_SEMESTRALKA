@@ -19,10 +19,7 @@
         <br/>
 
         <br/>
-        <input type="submit" name="submitR" value="Registrovať sa" class="btn tlacidlo">
+        <input type="submit" name="submit" value="Registrovať sa" class="btn tlacidlo">
     </form>
-
-
-
 
 </div>

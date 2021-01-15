@@ -4,22 +4,56 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Core\Model;
+use mysql_xdevapi\Exception;
 
 class Inzerat extends Model
 {
 
     protected $id;
+    protected $idOwner;
+
+
     protected string $titulok;
     protected string $text;
     protected float $cena;
     protected string $obrazok;
+    protected $owner;
 
-    public function __construct(string $titulok = "", string $text = "", float $cena = 0, string $obrazok = "")
+
+
+    public function __construct(string $titulok = "", string $text = "", float $cena = 0, string $obrazok = "",$idOwner = "")
     {
         $this->titulok = $titulok;
         $this->text = $text;
         $this->cena = $cena;
         $this->obrazok = $obrazok;
+        $this->idOwner = $idOwner;
+        $this->owner = null;
+    }
+
+
+    // region Getters and Setters
+
+    /**
+     * @return User|null
+     */
+    public function getOwner(): ?User
+    {
+        try {
+            return User::getOne($this->idOwner);
+        } catch (Exception $e) {
+
+        }
+
+
+    }
+
+    /**
+     * @param User|null $owner
+     */
+    public function setOwner(?User $owner): void
+    {
+        $this->owner = $owner;
     }
 
     /**
@@ -52,6 +86,22 @@ class Inzerat extends Model
     public function setText(string $text): void
     {
         $this->text = $text;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdOwner()
+    {
+        return $this->idOwner;
+    }
+
+    /**
+     * @param mixed $idOwner
+     */
+    public function setIdOwner($idOwner): void
+    {
+        $this->idOwner = $idOwner;
     }
 
     /**
@@ -102,11 +152,11 @@ class Inzerat extends Model
         $this->id = $id;
     }
 
-
+    //endregion
 
     static public function setDbColumns()
     {
-        return ['id', 'titulok', 'text', 'cena', 'obrazok'];
+        return ['id', 'titulok', 'text', 'cena', 'obrazok','idOwner'];
     }
 
     static public function setTableName()

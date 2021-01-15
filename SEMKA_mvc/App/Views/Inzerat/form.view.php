@@ -1,9 +1,12 @@
-<?php /** @var Array $data */ ?>
+<?php /** @var Array $data */
+/** @var \App\Core\AAuthenticator $auth */
+?>
 
 <div class="container-fluid ">
     <form method="post">
 
         <input type="hidden" id="id" name="id" value="<?= $data == null ? "" : $data->getId() ?>">
+        <input type="hidden" id="idOwner" name="idOwner" value="<?=$auth->getLoggedUser()->getId() ?>">
 
         <div class="form-row">
             <div class="form-group col-md-6">

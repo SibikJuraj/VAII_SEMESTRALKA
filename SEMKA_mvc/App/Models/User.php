@@ -7,14 +7,14 @@ use App\Core\Model;
 class User extends Model
 {
     protected int $id;
-    protected $login;
-    protected $password;
+    protected string $login;
+    protected string $password;
 
     /**
      * User constructor.
      * @param $login
      */
-    public function __construct($login = '', $password = '')
+    public function __construct(string $login = '',string $password = '')
     {
         $this->login = $login;
         $this->password = $password;
@@ -33,15 +33,15 @@ class User extends Model
     // region Getters and Setters
 
     /**
-     * @param mixed|string $login
+     * @param string $login
      */
-    public function setLogin($login): void
+    public function setLogin(string $login): void
     {
         $this->login = $login;
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
     public function getLogin()
     {
@@ -57,7 +57,7 @@ class User extends Model
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
     public function getPassword(): string
     {
@@ -65,7 +65,7 @@ class User extends Model
     }
 
     /**
-     * @param mixed|string $password
+     * @param string $password
      */
     public function setPassword(string $password): void
     {

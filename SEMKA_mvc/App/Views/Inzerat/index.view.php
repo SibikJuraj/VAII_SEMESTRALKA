@@ -35,12 +35,15 @@ foreach ($data as $inzerat) { ?>
      </div>
      </div>
 
+         <p >Pridal : <?= $inzerat->getOwner()->getLogin() ?></p>
      <hr/>
+
 
      <div class="icena">
      <p> Cena :  <?= $inzerat->getCena()?>  € </p>
     </div>
     </a>
+
     </div>
 
 

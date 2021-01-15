@@ -11,8 +11,8 @@
 <div class=" container">
 
     <div">
-        <a href="?c=Forum&a=Detail&id=<?php $data->getId() ?>" class="forum btn tlacidlo col-lg-12 col-md-12 col-sm-12 col-12 btn">Návrhy na zlepšenie </a>
-        <a href="?c=Forum&a=Detail&id=<?php $data->getId() ?>" class="forum btn tlacidlo col-lg-12 col-md-12 col-sm-12 col-12 btn">Problémy </a>
+        <a href="?c=Forum&a=Detail&id=<?php //$data->getId() ?>" class="forum btn tlacidlo col-lg-12 col-md-12 col-sm-12 col-12 btn">Návrhy na zlepšenie </a>
+        <a href="?c=Forum&a=Detail&id=<?php //$data->getId() ?>" class="forum btn tlacidlo col-lg-12 col-md-12 col-sm-12 col-12 btn">Problémy </a>
 
     </div>
 

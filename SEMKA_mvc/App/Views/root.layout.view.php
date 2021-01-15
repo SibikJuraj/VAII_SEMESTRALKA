@@ -22,7 +22,9 @@
 <body>
 
 <header>
+    <!--
     <h5 class="font-weight-bolder nastred"><?= \App\Config\Configuration::APP_NAME ?></h5>
+    -->
     <nav class="navbar navbar-expand-lg navbar-light ">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,34 +32,41 @@
         </button>
 
         <div class="menu collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
 
-                <li id="inzerat"  class="nav-item ">
-                    <a href="?c=Inzerat" class="btn btn-block tlacidlo ">Nové inzeráty</a>
-                </li>
-                <li id="kategorie" class="nav-item">
-                    <a href="?c=Kategorie" class="btn btn-block tlacidlo">Kategórie</a>
-                </li>
-                <li id="forum" class="nav-item">
-                    <a href="?c=Forum" class="btn btn-block tlacidlo">Fórum</a>
-                </li>
+            <div class="menu ">
+                <ul class="navbar-nav mr-auto">
+
+                    <li id="inzerat"  class="nav-item ">
+                        <a href="?c=Inzerat" class="btn btn-block tlacidlo ">Nové inzeráty</a>
+                    </li>
+                    <li id="kategorie" class="nav-item">
+                        <a href="?c=Kategorie" class="btn btn-block tlacidlo">Kategórie</a>
+                    </li>
+                    <li id="forum" class="nav-item">
+                        <a href="?c=Forum" class="btn btn-block tlacidlo">Fórum</a>
+                    </li>
 
 
+                </ul>
+            </div>
 
-            </ul>
 
         </div>
-        <div>
-            <?php if ($auth->isLogged()) { ?>
 
-                Prihlásený používateľ: <b><?=$auth->getLoggedUser()->getLogin() ?></b>
-                <br>
-                <a href="?c=Login&a=Logout" class="float-right"><strong>Odhlásiť sa</strong></a>
+        <div class="float-right ">
 
-            <?php } else { ?>
-                <a href="?c=Login&a=Login" ><strong>Prihlásiť sa</strong></a>
-            <?php } ?>
+                <?php if ($auth->isLogged()) { ?> Prihlásený ako : <b><?=$auth->getLoggedUser()->getLogin() ?></b>
+                    <br>
+                    <a href="?c=Login&a=Edit&id=<?=$auth->getLoggedUser()->getId() ?>" class="float-right"><strong>Upraviť profil</strong></a>
+                    <br>
+                    <a href="?c=Login&a=Logout" class="float-right"><strong>Odhlásiť sa</strong></a>
+
+                <?php } else { ?>
+                    <a href="?c=Login&a=Login" ><strong>Prihlásiť sa</strong></a>
+                <?php } ?>
+
         </div>
+
     </nav>
 
 

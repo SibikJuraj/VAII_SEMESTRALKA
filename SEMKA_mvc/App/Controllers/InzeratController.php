@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Models\Inzerat;
+use App\Models\User;
 
 class InzeratController extends AControllerBase
 {
@@ -12,6 +13,7 @@ class InzeratController extends AControllerBase
 
     public function index()
     {
+
         return $this->html(Inzerat::getAll("",[],"id DESC"));
     }
 
@@ -21,16 +23,17 @@ class InzeratController extends AControllerBase
         if (!isset($_POST['titulok'])) return $this->html();
 
 
-        $inzerat = new Inzerat($_POST['titulok'], $_POST['text'],(float)$_POST['cena'], $_POST['obrazok']);
+        $inzerat = new Inzerat($_POST['titulok'], $_POST['text'],(float)$_POST['cena'], $_POST['obrazok'],$_POST['idOwner']);
         $inzerat->save();
 
 
-        return $this->html(Inzerat::getAll("",[],"id DESC"),'index');
+        return $this->redirect('?');
 
     }
 
     public function edit()
     {
+
 
         if (isset($_POST['id'])) {
 
@@ -41,7 +44,9 @@ class InzeratController extends AControllerBase
             $inzerat->setCena((float)$_POST['cena']);
             $inzerat->setObrazok($_POST['obrazok']);
             $inzerat->save();
-            return $this->html(Inzerat::getOne($_GET['id']),'detail');
+
+            return $this->redirect("?c=Inzerat&a=Detail&id=". $inzerat->getId());
+
 
         }
 
@@ -61,7 +66,7 @@ class InzeratController extends AControllerBase
             $inzerat = Inzerat::getOne($_GET['id']);
             $inzerat->delete();
 
-            return $this->html(Inzerat::getAll("",[],"id DESC"),'index');
+            return $this->redirect('?');
         }
 
     }
@@ -69,6 +74,7 @@ class InzeratController extends AControllerBase
 
     public function detail()
     {
+
         if (isset($_GET['id'])) return $this->html(Inzerat::getOne($_GET['id']));
     }
 
