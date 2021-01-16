@@ -4,7 +4,7 @@
 <hr/>
 
 <div class="nastred">
-    <a href="?c=Inzerat&a=Add" class="forumnova btn tlacidlo btn">Začať novú diskusiu </a>
+    <a href="?c=Forum&a=Detail" class="forumnova btn tlacidlo btn">Začať novú diskusiu </a>
 
 </div>
 

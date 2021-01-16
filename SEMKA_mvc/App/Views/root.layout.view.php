@@ -15,6 +15,7 @@
 
     <script src="public/js/skript.js"> </script>
     <script src="public/js/selected.js"> </script>
+    <script src="public/js/loadInzerat.js"> </script>
 
     <link rel="stylesheet" href="public/css/style.css">
 </head>
