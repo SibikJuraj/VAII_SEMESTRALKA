@@ -21,8 +21,20 @@ use App\Models\User;
             <img src="<?= $data->getObrazok() ?>" alt="" class="img-fluid">
         </div>
     </div>
-    <p >Pridal : <?= $data->getOwner()->getLogin() ?></p>
+    <div class="row">
+        <div class="col-6">
+            <p>Pridal : <strong> <?= $data->getOwner()->getLogin() ?> </strong> </p>
+        </div>
+
+        <div class="col-6">
+            <p class="float-right">Kategória : <strong> <?= $data->getKategoria()->getNazov() ?> </strong> </p>
+        </div>
+
+
+    </div>
+
     <hr/>
+
 
 
    <div class="icena">

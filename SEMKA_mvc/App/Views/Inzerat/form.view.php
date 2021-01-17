@@ -1,6 +1,8 @@
 <?php /** @var Array $data */
 /** @var \App\Core\AAuthenticator $auth */
 ?>
+<script src="public/js/kategoriePicker.js"> </script>
+
 
 <div class="container-fluid ">
     <form method="post">
@@ -9,18 +11,31 @@
         <input type="hidden" id="idOwner" name="idOwner" value="<?=$auth->getLoggedUser()->getId() ?>">
 
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-5">
                 <label for="titulok">Titulok:</label>
                 <br/>
                 <input class="form-control" id="titulok" type="text" name="titulok" value="<?= $data == null ? "" : $data->getTitulok() ?>" maxlength="255" required>
                 <br/>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-5">
                 <label for="cena">Cena:</label>
                 <br/>
                 <input class="form-control" id="cena" type="number" step="any" name="cena" value="<?= $data == null ? "" : $data->getCena() ?>" min ="0" max="1000000" required>
                 <br/>
             </div>
+
+
+            <div class="form-group col-md-2">
+
+                <label for="kategoria">Kategória:</label>
+                <br/>
+                <select id="idKategoria" name="idKategoria" >
+                </select>
+                <br/>
+
+            </div>
+
+
         </div>
 
 
@@ -30,6 +45,7 @@
             <textarea class="form-control" rows="5" id="text" type="text" name="text" required><?= $data == null ? "" : $data->getText() ?></textarea>
             <br/>
         </div>
+
 
 
 

@@ -15,4 +15,15 @@ class KategorieController extends AControllerBase
         return $this->html(Kategoria::getAll());
     }
 
+    public function kategorie()
+    {
+        return $this->json(Kategoria::getAll());
+    }
+
+
+    public function add() {
+
+
+    }
+
 }

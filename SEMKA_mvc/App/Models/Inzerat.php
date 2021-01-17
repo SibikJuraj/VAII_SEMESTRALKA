@@ -11,28 +11,71 @@ class Inzerat extends Model
 
     protected $id;
     protected $idOwner;
-
+    protected $idKategoria;
 
     protected string $titulok;
     protected string $text;
     protected float $cena;
     protected string $obrazok;
     protected $owner;
+    protected $kategoria;
 
 
-
-    public function __construct(string $titulok = "", string $text = "", float $cena = 0, string $obrazok = "",$idOwner = "")
+    public function __construct(string $titulok = "", string $text = "", float $cena = 0, string $obrazok = "",$idOwner = "",$idKategoria = "")
     {
         $this->titulok = $titulok;
         $this->text = $text;
         $this->cena = $cena;
         $this->obrazok = $obrazok;
         $this->idOwner = $idOwner;
+        $this->idKategoria = $idKategoria;
+
         $this->owner = null;
+        $this->kategoria = null;
+
     }
 
 
     // region Getters and Setters
+
+    /**
+     * @return Kategoria|null
+     */
+    public function getKategoria(): ?Kategoria
+    {
+        try {
+            return Kategoria::getOne($this->idKategoria);
+        } catch (Exception $e) {
+
+        }
+
+    }
+
+    /**
+     * @param Kategoria|null $kategoria
+     */
+    public function setKategoria(?Kategoria $kategoria): void
+    {
+        $this->kategoria = $kategoria;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getIdKategoria()
+    {
+        return $this->idKategoria;
+    }
+
+    /**
+     * @param mixed $idKategoria
+     */
+    public function setIdKategoria($idKategoria): void
+    {
+        $this->idKategoria = $idKategoria;
+    }
+
 
     /**
      * @return User|null
@@ -45,7 +88,6 @@ class Inzerat extends Model
 
         }
 
-
     }
 
     /**
@@ -55,6 +97,25 @@ class Inzerat extends Model
     {
         $this->owner = $owner;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getIdOwner()
+    {
+        return $this->idOwner;
+    }
+
+    /**
+     * @param mixed $idOwner
+     */
+    public function setIdOwner($idOwner): void
+    {
+        $this->idOwner = $idOwner;
+    }
+
+
 
     /**
      * @return string
@@ -88,21 +149,6 @@ class Inzerat extends Model
         $this->text = $text;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIdOwner()
-    {
-        return $this->idOwner;
-    }
-
-    /**
-     * @param mixed $idOwner
-     */
-    public function setIdOwner($idOwner): void
-    {
-        $this->idOwner = $idOwner;
-    }
 
     /**
      * @return float
@@ -152,15 +198,20 @@ class Inzerat extends Model
         $this->id = $id;
     }
 
+
+
+
     //endregion
 
     static public function setDbColumns()
     {
-        return ['id', 'titulok', 'text', 'cena', 'obrazok','idOwner'];
+        return ['id', 'titulok', 'text', 'cena', 'obrazok','idOwner','idKategoria'];
     }
 
     static public function setTableName()
     {
         return "inzeraty";
     }
+
+
 }

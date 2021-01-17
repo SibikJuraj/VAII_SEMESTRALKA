@@ -6,6 +6,7 @@ namespace App\Controllers;
 use App\App;
 use App\Core\AControllerBase;
 use App\Models\Inzerat;
+use App\Models\Kategoria;
 use App\Models\User;
 
 class InzeratController extends AControllerBase
@@ -19,6 +20,9 @@ class InzeratController extends AControllerBase
 
     public function add()
     {
+
+        $_POST['zoznamKategorii'] = Kategoria::getAll();
+
         if(!$this->app->getAuth()->isLogged())
             return $this->redirect('?');
 
@@ -26,7 +30,7 @@ class InzeratController extends AControllerBase
         if (!isset($_POST['titulok'])) return $this->html();
 
 
-        $inzerat = new Inzerat($_POST['titulok'], $_POST['text'],(float)$_POST['cena'], $_POST['obrazok'],$_POST['idOwner']);
+        $inzerat = new Inzerat($_POST['titulok'], $_POST['text'],(float)$_POST['cena'], $_POST['obrazok'],$_POST['idOwner'],$_POST['idKategoria']);
         $inzerat->save();
 
 
@@ -48,6 +52,7 @@ class InzeratController extends AControllerBase
             $inzerat->setText($_POST['text']);
             $inzerat->setCena((float)$_POST['cena']);
             $inzerat->setObrazok($_POST['obrazok']);
+            $inzerat->setIdKategoria($_POST['idKategoria']);
             $inzerat->save();
 
             return $this->redirect("?c=Inzerat&a=Detail&id=". $inzerat->getId());
@@ -83,7 +88,8 @@ class InzeratController extends AControllerBase
     public function detail()
     {
 
-        if (isset($_GET['id'])) return $this->html(Inzerat::getOne($_GET['id']));
+        if (isset($_GET['id']))
+            return $this->html(Inzerat::getOne($_GET['id']));
     }
 
 
@@ -93,11 +99,19 @@ class InzeratController extends AControllerBase
         $inzPom = Inzerat::getAll("",[],"id DESC");
 
 
-        foreach ($inzPom as $inzerat)
+        foreach ($inzPom as $inzerat) {
             $inzerat->setOwner($inzerat->getOwner());
+            $inzerat->setKategoria($inzerat->getKategoria());
+        }
+
 
 
        return $this->json($inzPom);
+    }
+
+    public function filter() {
+
+        return $this->html(Inzerat::getAll(" idKategoria IN (".$_GET['id'].")",[],"id DESC"));
     }
 
 

@@ -67,7 +67,7 @@ class Chat {
 
 
         } catch (e) {
-            console.error("Chyba : " + e.message);
+            console.error("Chyba : " + e);
         }
 
 

@@ -9,6 +9,8 @@ class Kategoria extends Model
 {
 
     protected $id;
+
+
     protected string $nazov;
     protected string $obrazok;
 
@@ -18,6 +20,26 @@ class Kategoria extends Model
         $this->nazov = $nazov;
         $this->obrazok = $obrazok;
     }
+
+    // region Getters and Setters
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+
 
     /**
      * @return string
@@ -51,7 +73,7 @@ class Kategoria extends Model
         $this->obrazok = $obrazok;
     }
 
-
+    //endregion
 
     static public function setDbColumns()
     {

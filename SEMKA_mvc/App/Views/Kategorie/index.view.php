@@ -1,16 +1,28 @@
-<?php /** @var Array $data */ ?>
+<?php /** @var Array $data */
+/** @var \App\Core\AAuthenticator $auth */
+?>
+<script src="public/js/addKategoriu.js"> </script>
+
 
 <h1 >Kategórie</h1>
+
+<?php if ($auth->isLogged() && $auth->getLoggedUser()->getLogin() === 'admin') { ?>
+    <div class="nastred">
+        <a id="addKategoriu" onclick="kategoriaAdd()" class="btn tlacidlo">+ Pridaj kategóriu +</a>
+    </div>
+<?php } ?>
 <hr/>
+
+
+
+
 
 <div class="container">
     <div class="row">
     <?php foreach ($data as $kategoria) { ?>
-
-        <div class="kategoria tlacidlo col-lg-2 col-md-3 col-sm-4 col-6 btn">
-            <?= $kategoria->getNazov() ?> <br/> <img src="<?= $kategoria->getObrazok() ?>" alt=""/>
-        </div>
-
+        <a href="?c=Inzerat&a=Filter&id=<?= $kategoria->getId() ?>" class="kategoria tlacidlo col-lg-2 col-md-3 col-sm-4 col-6 btn">
+            <?= $kategoria->getNazov() ?>
+            <img src="<?= $kategoria->getObrazok() ?>" alt=""/></a>
 
     <?php } ?>
     </div>

@@ -1,3 +1,5 @@
+<script src="public/js/skript.js"> </script>
+
 <div class="container">
     <div class="row border">
         <div class="col-2">

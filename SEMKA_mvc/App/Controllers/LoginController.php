@@ -54,25 +54,7 @@ class LoginController extends AControllerBase
         return $this->html(null, 'logout');
     }
 
-    public function edit()
-    {
-        $formData = $this->app->getRequest()->getPost();
-        $user = $this->app->getAuth()->getLoggedUser();
-        if (isset($formData['submit'])) {
-            $user->setLogin($formData['login']);
-            $user->setPassword(password_hash($formData['password'],PASSWORD_DEFAULT));
-            $user->save();
 
-            return $this->redirect('?');
-        }
-
-
-
-
-        return $this->html(User::getOne($_GET['id']));
-
-
-    }
 
 
 }
