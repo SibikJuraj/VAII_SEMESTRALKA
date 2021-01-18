@@ -29,7 +29,7 @@
 
                 <label for="kategoria">Kategória:</label>
                 <br/>
-                <select id="idKategoria" name="idKategoria" >
+                <select id="idKategoria" class="form-control " name="idKategoria" >
                 </select>
                 <br/>
 

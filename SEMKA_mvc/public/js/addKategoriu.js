@@ -2,32 +2,40 @@ class KategoriaAdd {
 
     constructor() {
 
-        this.kategoriaAdd();
+        document.getElementById("addKategoriu").onclick = () => this.kategoriaAdd();
 
 
     }
 
     kategoriaAdd() {
        try {
+           var list = document.getElementById('newK');
+           var html = document.createElement('div');
 
-           var list = document.onClick("addKategoriu");
-           var html = "";
-           html += `    <form method="post">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
+           html = `    <form method="post" action="?c=Kategorie&a=Add">
+                            
+                                <div class="form-group nastred"">
                                     <label for="nazov">Názov kategórie:</label>
                                     <br/>
                                     <input class="form-control nastred" id="nazov" type="text" name="nazov" value="" required>
                                     <br/>
                                 </div>
-                            </div>
-                            <br/>
+                                <div class="form-group">
+                                    <label for="obrazok">URL obrázka:</label>
+                                    <br/>
+                                    <input class="form-control nastred" id="obrazok" type="url" name="obrazok" value="" required>
+                                    <br/>
+                        
+                                </div>
                     
-                            <input type="submit" name="submit" value="Pridať kategóriu" class="btn tlacidlo">
+                            
+                            <input type="submit" name="submit" value="Pridať kategóriu" class="btn tlacidlo"> 
+                           
                     
                         </form>`
 
            list.innerHTML = html;
+
 
         } catch (e ) {
             console.error("Chyba " + e);
@@ -37,7 +45,7 @@ class KategoriaAdd {
 
 }
 
-document.addEventListener('click', () => {
+document.addEventListener('DOMContentLoaded', () => {
     var kategoriaAdd = new KategoriaAdd();
 
 });

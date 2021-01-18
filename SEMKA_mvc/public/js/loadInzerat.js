@@ -65,6 +65,7 @@ class InzeratJS {
 
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
     var inzeratJS = new InzeratJS();
 

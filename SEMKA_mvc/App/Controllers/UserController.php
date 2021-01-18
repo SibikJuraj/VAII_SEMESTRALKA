@@ -27,6 +27,7 @@ class UserController extends AControllerBase
         if (isset($formData['submit'])) {
             $user->setLogin($formData['login']);
             $user->setPassword(password_hash($formData['password'],PASSWORD_DEFAULT));
+
             $user->save();
 
             return $this->redirect('?');
@@ -48,7 +49,52 @@ class UserController extends AControllerBase
     }
 
 
+    public function allUsers() {
 
+        if(!$this->app->getAuth()->isLogged() || $this->app->getAuth()->getLoggedUser()->getType() != "admin")
+            return $this->redirect('?c=User&a=Settings&id='.$this->app->getAuth()->getLoggedUser()->getId());
+
+
+        return $this->html(User::getAll());
+    }
+
+
+
+    public function setType() {
+        if(!$this->app->getAuth()->isLogged() || $this->app->getAuth()->getLoggedUser()->getType() != "admin")
+            return $this->redirect('?c=User&a=Settings&id='.$this->app->getAuth()->getLoggedUser()->getId());
+
+
+        if (isset($_POST['id'])) {
+            $user = User::getOne($_POST['id']);
+
+            if ($user->getId() != $this->app->getAuth()->getLoggedUser()->getId()) {
+                $user->setType($_POST['type']);
+                $user->save();
+
+            }
+
+
+        }
+
+
+
+
+        return $this->html();
+    }
+
+
+
+    public function setUsersType() {
+        if(!$this->app->getAuth()->isLogged() || $this->app->getAuth()->getLoggedUser()->getType() != 'admin')
+            return $this->redirect('?c=User&a=Settings&id='.$this->app->getAuth()->getLoggedUser()->getId());
+
+
+
+        return $this->json(User::getAll());
+
+
+    }
 
 
 

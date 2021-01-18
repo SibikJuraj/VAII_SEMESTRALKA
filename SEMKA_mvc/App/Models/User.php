@@ -9,20 +9,24 @@ class User extends Model
     protected int $id;
     protected string $login;
     protected string $password;
+    protected string $type;
+
+
 
     /**
      * User constructor.
      * @param $login
      */
-    public function __construct(string $login = '',string $password = '')
+    public function __construct(string $login = '',string $password = '',string $type = '')
     {
         $this->login = $login;
         $this->password = $password;
+        $this->type = $type;
     }
 
     public static function setDbColumns()
     {
-        return ['id', 'login', 'password'];
+        return ['id', 'login', 'password', 'type'];
     }
 
     static public function setTableName()
@@ -31,6 +35,25 @@ class User extends Model
     }
 
     // region Getters and Setters
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+
+
 
     /**
      * @param string $login

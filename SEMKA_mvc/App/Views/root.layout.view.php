@@ -26,10 +26,11 @@
     <!--
     <h5 class="font-weight-bolder nastred"><?= \App\Config\Configuration::APP_NAME ?></h5>
     -->
-    <nav class="row navbar navbar-expand-lg navbar-light">
+
+    <nav class="row navbar navbar-expand-lg navbar-light ">
 
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler  " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -55,16 +56,21 @@
 
         </div>
 
-        <div class="float-right">
 
 
-            <?php if ($auth->isLogged()) { ?> Prihlásený ako : <b><?=$auth->getLoggedUser()->getLogin() ?></b>
+        <div >
+            <?php if ($auth->isLogged()) { ?>
+                <span class="float-right"> Prihlásený ako : <b><?=$auth->getLoggedUser()->getLogin() ?></b> </span>
                 <br>
                 <a href="?c=User&a=Settings&id=<?=$auth->getLoggedUser()->getId() ?>" class="float-right"><strong>Nastavenia profilu</strong></a>
                 <br>
                 <a href="?c=Login&a=Logout" class="float-right"><strong>Odhlásiť sa</strong></a>
 
-            <?php } else { ?>
+            <?php if ($auth->getLoggedUser()->getType() === 'admin') { ?>
+                    <br>
+                <a href="?c=User&a=allUsers" class="btn tlacidlo danger float-right">Nastaviť oprávnenia používateľom</a>
+
+            <?php } } else { ?>
                 <a href="?c=Login&a=Login" ><strong>Prihlásiť sa</strong></a>
             <?php } ?>
 

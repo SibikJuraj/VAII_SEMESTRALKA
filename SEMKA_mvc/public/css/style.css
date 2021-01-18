@@ -7,46 +7,6 @@ body {
 }
 
 
-
-
-#messages {
-    background-color: beige;
-    padding: 10px;
-    margin: 10px;
-    color: #262626;
-}
-
-#messages > div {
-    border: 1px solid black;
-    margin: 3px;
-    padding: 2px;
-    background-color: white;
-}
-
-#messages div div {
-    display: inline;
-}
-
-.sender {
-    display: inline;
-    font-weight: bold;
-    margin: 0px 10px 0px 2px;
-}
-
-#messages > div.from-me {
-    background-color: aqua;
-}
-
-#messages > div.to-me{
-    background-color: yellow;
-}
-
-
-
-
-
-
-
 .danger {
     background-color: #d9534f !important;
 }

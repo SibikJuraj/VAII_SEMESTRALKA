@@ -19,7 +19,7 @@ class LoginController extends AControllerBase
     {
         $formData = $this->app->getRequest()->getPost();
         if (isset($formData['submit'])) {
-            $user = new User($formData['login'], $formData['password']);
+            $user = new User($formData['login'], $formData['password'],'user');
             $user->setPassword(password_hash($formData['password'],PASSWORD_DEFAULT));
             $user->save();
 

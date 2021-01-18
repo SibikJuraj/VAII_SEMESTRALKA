@@ -16,7 +16,6 @@ use App\Models\User;
 
         <?php if ($auth->isLogged()  && ($auth->getLoggedUser()->getId() == $data->getId())){ ?>
             <a href="?c=User&a=Edit&id=<?= $data->getId() ?>" class="btn tlacidlo edit col-6">Editovať používateľa</a>
-            <a href="?c=User&a=Delete&id=<?= $data->getId() ?>" class="btn tlacidlo col-6">Vymazať inzerát</a>
 
         <?php } ?>
 

@@ -23,6 +23,17 @@ class KategorieController extends AControllerBase
 
     public function add() {
 
+        if (!isset($_POST['nazov'])) return $this->html();
+
+
+        $kategoria = new Kategoria($_POST['nazov'], $_POST['obrazok']);
+        $kategoria->save();
+
+
+        return $this->redirect('?c=Kategorie&a=Index');
+
+
+
 
     }
 
