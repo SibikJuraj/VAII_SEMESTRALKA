@@ -3,7 +3,7 @@
 ?>
 <script src="public/js/loadInzerat.js"> </script>
 
-<h1 >Nové inzeráty</h1>
+<h1 >Inzeráty</h1>
 
 <?php if ($auth->isLogged()) { ?>
     <div class="nastred">

@@ -1,21 +1,5 @@
-class Selected {
+function selected(page) {
 
-    constructor() {
-
-        this.selected();
-
-
-    }
-
-    selected() {
-
-        var element = document.getElementById("inzerat");
-        element.classList.add('active');
-    }
-
+    var element = document.getElementById(page);
+    element.classList.add('active');
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    var selected = new Selected();
-
-});

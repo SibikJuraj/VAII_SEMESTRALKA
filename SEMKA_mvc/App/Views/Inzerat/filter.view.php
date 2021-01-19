@@ -3,7 +3,7 @@
 ?>
 
 
-<h1 >Nové inzeráty</h1>
+<h1 >Inzeráty pre kategóriu <?= $data == null ? "" : $data[0]->getKategoria()->getNazov() ?></h1>
 
 <?php if ($auth->isLogged()) { ?>
     <div class="nastred">

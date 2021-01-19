@@ -27,7 +27,7 @@
 
             <div class="form-group col-md-2">
 
-                <label for="kategoria">Kategória:</label>
+                <label for="idKategoria">Kategória:</label>
                 <br/>
                 <select id="idKategoria" class="form-control " name="idKategoria" >
                 </select>
@@ -42,7 +42,7 @@
         <div class="form-group">
             <label for="text">Text:</label>
             <br/>
-            <textarea class="form-control" rows="5" id="text" type="text" name="text" required><?= $data == null ? "" : $data->getText() ?></textarea>
+            <textarea class="form-control" rows="5" id="text" name="text" required><?= $data == null ? "" : $data->getText() ?></textarea>
             <br/>
         </div>
 

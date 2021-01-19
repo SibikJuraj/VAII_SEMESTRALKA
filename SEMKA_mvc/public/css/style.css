@@ -7,6 +7,11 @@ body {
 }
 
 
+.dark {
+    background-color: rgba(38, 38, 38, 0.8);
+
+}
+
 .danger {
     background-color: #d9534f !important;
 }
@@ -172,6 +177,8 @@ table {
     height: auto;
     text-align: center;
 }
+
+
 
 .navbar-toggler {
     background-color: #b3b35f;

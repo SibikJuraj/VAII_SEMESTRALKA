@@ -14,21 +14,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<!--
+
     <script src="public/js/selected.js"> </script>
 
-   -->
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 
 <body>
 
-<header>
-    <!--
-    <h5 class="font-weight-bolder nastred"><?= \App\Config\Configuration::APP_NAME ?></h5>
-    -->
+<header class="dark sticky-top">
 
-    <nav class="row navbar navbar-expand-lg navbar-light ">
+    <nav class="row navbar navbar-expand-lg navbar-light  ">
 
 
         <button class="navbar-toggler  " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,10 +34,10 @@
         <div class="menu collapse navbar-collapse" id="navbarSupportedContent">
 
             <div class="menu ">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto" >
 
-                    <li id="inzerat"  class="nav-item ">
-                        <a href="?c=Inzerat" class="btn btn-block tlacidlo ">Nové inzeráty</a>
+                    <li id="inzerat" class="nav-item ">
+                        <a href="?c=Inzerat" class="btn btn-block tlacidlo ">Inzeráty</a>
                     </li>
                     <li id="kategorie" class="nav-item">
                         <a href="?c=Kategorie" class="btn btn-block tlacidlo">Kategórie</a>
@@ -53,6 +49,9 @@
 
 
         </div>
+
+
+
 
 
 

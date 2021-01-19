@@ -13,9 +13,11 @@ use App\Models\Komentar;
 class InzeratController extends AControllerBase
 {
 
+
+
     public function index()
     {
-
+        echo "<script>selected('inzerat')</script>";
         return $this->html(Inzerat::getAll("",[],"id DESC"));
     }
 
@@ -91,7 +93,7 @@ class InzeratController extends AControllerBase
 
     public function delete()
     {
-        if(!$this->app->getAuth()->isLogged() || $this->app->getAuth()->getLoggedUser()->getId() != Inzerat::getOne($_GET['id'])->getIdOwner())
+        if(!$this->app->getAuth()->isLogged())
             return $this->redirect('?');
 
 
@@ -128,6 +130,9 @@ class InzeratController extends AControllerBase
     }
 
     public function filter() {
+        $kategoria = (string)Kategoria::getOne($_GET['id'])->getNazov();
+
+
 
         return $this->html(Inzerat::getAll(" idKategoria IN (".$_GET['id'].")",[],"id DESC"));
     }

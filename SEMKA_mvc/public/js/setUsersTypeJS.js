@@ -16,20 +16,21 @@ class UserJS {
             var html = "";
 
             data.forEach((user)  => {
-                html += `<div class="col-3 " >
-                            <a class="btn btn-large tlacidlo col-12" >
-                                <div>
-                                
-                                <h3>${user.login} </h3>
-                                <p>
-                                    ID : ${user.id}
-                                </p>
-                                
-                                </div>
-     
-                            </a>
-                            
-                            <div class="form-group">
+                html += `<div class="offset-1">
+                            <div class=" col-lg-2 col-md-3 col-sm-4 col-6" >
+                                <a class="btn btn-large tlacidlo " >
+                                    <div>
+                                    
+                                    <h3>${user.login} </h3>
+                                    <p>
+                                        ID : ${user.id}
+                                    </p>
+                                    
+                                    </div>
+         
+                                </a>
+                            </div>
+                            <div class="form-group ">
 
                                 <label for="kategoria">Typ používateľa: </label>
                                  ${user.login === 'admin' ? `<h3>${user.login} </h3>` : `
@@ -42,8 +43,7 @@ class UserJS {
                                 <br/>
                             
                             </div>
-                            
-     
+               
                         </div>`
 
 

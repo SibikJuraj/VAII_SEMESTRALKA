@@ -14,7 +14,7 @@ class KategoriaAdd {
 
            html = `    <form method="post" action="?c=Kategorie&a=Add">
                             
-                                <div class="form-group nastred"">
+                                <div class="form-group nastred">
                                     <label for="nazov">Názov kategórie:</label>
                                     <br/>
                                     <input class="form-control nastred" id="nazov" type="text" name="nazov" value="" required>
