@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\App;
+
 use App\Core\AControllerBase;
 use App\Models\Inzerat;
 use App\Models\Kategoria;
-use App\Models\User;
+use App\Models\Komentar;
+
 
 class InzeratController extends AControllerBase
 {
@@ -21,16 +22,34 @@ class InzeratController extends AControllerBase
     public function add()
     {
 
-        $_POST['zoznamKategorii'] = Kategoria::getAll();
+
+        $formData = $this->app->getRequest()->getPost();
+        $formData['zoznamKategorii'] = Kategoria::getAll();
+
 
         if(!$this->app->getAuth()->isLogged())
             return $this->redirect('?');
 
 
-        if (!isset($_POST['titulok'])) return $this->html();
+        if (!isset($formData['titulok'])) return $this->html();
 
 
-        $inzerat = new Inzerat($_POST['titulok'], $_POST['text'],(float)$_POST['cena'], $_POST['obrazok'],$_POST['idOwner'],$_POST['idKategoria']);
+        $obrazok = $formData['obrazok'];
+
+        $koncovka = substr($obrazok, -3);
+
+        switch ($koncovka) {
+            case 'jpg':
+            case 'png':
+                break;
+            default:
+                echo '<p class="danger ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
+                return $this->html();
+                break;
+
+        }
+
+        $inzerat = new Inzerat($formData['titulok'], $formData['text'],(float)$cena, $formData['obrazok'],$formData['idOwner'],$formData['idKategoria']);
         $inzerat->save();
 
 
@@ -40,34 +59,35 @@ class InzeratController extends AControllerBase
 
     public function edit()
     {
-
         if(!$this->app->getAuth()->isLogged() || $this->app->getAuth()->getLoggedUser()->getId() != Inzerat::getOne($_GET['id'])->getIdOwner())
             return $this->redirect('?');
 
-        if (isset($_POST['id'])) {
+        if ($this->app->getAuth()->getLoggedUser()->getId() === Inzerat::getOne($_GET['id'])->getIdOwner() || $this->app->getAuth()->getLoggedUser()->getType() === 'admin')  {
+
+            $formData = $this->app->getRequest()->getPost();
+            if (isset($formData['id'])) {
 
 
-            $inzerat = Inzerat::getOne($_POST['id']);
-            $inzerat->setTitulok($_POST['titulok']);
-            $inzerat->setText($_POST['text']);
-            $inzerat->setCena((float)$_POST['cena']);
-            $inzerat->setObrazok($_POST['obrazok']);
-            $inzerat->setIdKategoria($_POST['idKategoria']);
-            $inzerat->save();
+                $inzerat = Inzerat::getOne($formData['id']);
+                $inzerat->setTitulok($formData['titulok']);
+                $inzerat->setText($formData['text']);
+                $inzerat->setCena((float)$formData['cena']);
+                $inzerat->setObrazok($formData['obrazok']);
+                $inzerat->setIdKategoria($formData['idKategoria']);
+                $inzerat->save();
 
-            return $this->redirect("?c=Inzerat&a=Detail&id=". $inzerat->getId());
+                return $this->redirect("?c=Inzerat&a=Detail&id=". $inzerat->getId());
+
+
+            }
+
 
 
         }
 
-
-
-
         return $this->html(Inzerat::getOne($_GET['id']));
 
-
     }
-
 
     public function delete()
     {
@@ -75,22 +95,43 @@ class InzeratController extends AControllerBase
             return $this->redirect('?');
 
 
-        if (isset($_GET['id'])) {
-            $inzerat = Inzerat::getOne($_GET['id']);
-            $inzerat->delete();
+        if ($this->app->getAuth()->getLoggedUser()->getId() === Inzerat::getOne($_GET['id'])->getIdOwner() || $this->app->getAuth()->getLoggedUser()->getType() === 'admin') {
 
+            if (isset($_GET['id'])) {
+                $inzerat = Inzerat::getOne($_GET['id']);
+
+                $komentare = Komentar::getAll("idInzerat =" . $inzerat->getId());
+                foreach ($komentare as $komentar) {
+                    $komentar->delete();
+                }
+
+
+                $inzerat->delete();
+
+
+            }
             return $this->redirect('?');
         }
-
     }
 
 
     public function detail()
     {
+        if (!isset($_GET['id']))
+            return $this->redirect('?');
 
-        if (isset($_GET['id']))
+
             return $this->html(Inzerat::getOne($_GET['id']));
+
+
+
     }
+
+    public function filter() {
+
+        return $this->html(Inzerat::getAll(" idKategoria IN (".$_GET['id'].")",[],"id DESC"));
+    }
+
 
 
     public function inzeraty()
@@ -109,10 +150,44 @@ class InzeratController extends AControllerBase
        return $this->json($inzPom);
     }
 
-    public function filter() {
 
-        return $this->html(Inzerat::getAll(" idKategoria IN (".$_GET['id'].")",[],"id DESC"));
+
+    public function komentare()
+    {
+        $komentare = Komentar::getAll("",[],"id DESC");
+
+        foreach ($komentare as $komentar) {
+
+
+            $komentar->setAutor($komentar->getAutor());
+            $komentar->setInzerat($komentar->getInzerat());
+
+
+        }
+
+        return $this->json($komentare);
+
     }
+
+    public function addKomentar()
+    {
+
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
+
+        $formData = $this->app->getRequest()->getPost();
+        if (!isset($formData['text'])) return $this->html();
+
+
+        $komentar = new Komentar($formData['text'],$formData['idAutor'], $formData['idInzerat']);
+        $komentar->save();
+
+
+        return $this->redirect("?c=Inzerat&a=Detail&id=". $_GET['id']);
+
+    }
+
+
 
 
 }

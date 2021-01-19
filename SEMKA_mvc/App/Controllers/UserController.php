@@ -20,14 +20,12 @@ class UserController extends AControllerBase
 
 
 
-    public function edit()
+    public function zmenitHeslo()
     {
         $formData = $this->app->getRequest()->getPost();
         $user = $this->app->getAuth()->getLoggedUser();
         if (isset($formData['submit'])) {
-            $user->setLogin($formData['login']);
             $user->setPassword(password_hash($formData['password'],PASSWORD_DEFAULT));
-
             $user->save();
 
             return $this->redirect('?');

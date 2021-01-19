@@ -2,7 +2,8 @@
 /** @var string $contentHTML */
 /** @var \App\Core\AAuthenticator $auth */
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="sk">
 <head>
     <title>INZERATIK</title>
 
@@ -44,9 +45,6 @@
                     </li>
                     <li id="kategorie" class="nav-item">
                         <a href="?c=Kategorie" class="btn btn-block tlacidlo">Kategórie</a>
-                    </li>
-                    <li id="forum" class="nav-item">
-                        <a href="?c=Forum" class="btn btn-block tlacidlo">Fórum</a>
                     </li>
 
 

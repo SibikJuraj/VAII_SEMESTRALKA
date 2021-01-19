@@ -15,7 +15,7 @@ use App\Models\User;
 
 
         <?php if ($auth->isLogged()  && ($auth->getLoggedUser()->getId() == $data->getId())){ ?>
-            <a href="?c=User&a=Edit&id=<?= $data->getId() ?>" class="btn tlacidlo edit col-6">Editovať používateľa</a>
+            <a href="?c=User&a=zmenitHeslo&id=<?= $data->getId() ?>" class="btn tlacidlo edit col-6">Zmeniť heslo</a>
 
         <?php } ?>
 

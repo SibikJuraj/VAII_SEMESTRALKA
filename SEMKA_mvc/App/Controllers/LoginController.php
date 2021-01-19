@@ -18,10 +18,40 @@ class LoginController extends AControllerBase
     public function register()
     {
         $formData = $this->app->getRequest()->getPost();
+
         if (isset($formData['submit'])) {
+
+            $chybneUdaje = 0;
+
+            if ($formData['password_confirmation'] != $formData['password']) {
+                echo '<p class="danger ">Heslá sa nezhodujú</p>';
+                $chybneUdaje++;
+
+            }
+
+
+            $login = (string)$formData['login'];
+
+
+            $users = User::getAll("",[],"");
+
+            foreach ($users as $user) {
+                if ($user->getLogin() === $login) {
+                    echo '<p class="danger ">Používateľ s takýmto loginom už existuje!</p>';
+                    $chybneUdaje++;
+                }
+
+            }
+
+            if ($chybneUdaje > 0)
+                return $this->html();
+
+
+
             $user = new User($formData['login'], $formData['password'],'user');
             $user->setPassword(password_hash($formData['password'],PASSWORD_DEFAULT));
             $user->save();
+
 
             return $this->redirect('?c=Login&a=Login');
         }
@@ -51,7 +81,7 @@ class LoginController extends AControllerBase
     public function logout()
     {
         $this->app->getAuth()->logout();
-        return $this->html(null, 'logout');
+        return $this->redirect('?');
     }
 
 

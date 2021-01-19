@@ -14,7 +14,7 @@
             <div class="form-group col-md-5">
                 <label for="titulok">Titulok:</label>
                 <br/>
-                <input class="form-control" id="titulok" type="text" name="titulok" value="<?= $data == null ? "" : $data->getTitulok() ?>" maxlength="255" required>
+                <input class="form-control" id="titulok" type="text" name="titulok" value="<?= $data == null ? "" : $data->getTitulok() ?>" maxlength="50" required>
                 <br/>
             </div>
             <div class="form-group col-md-5">

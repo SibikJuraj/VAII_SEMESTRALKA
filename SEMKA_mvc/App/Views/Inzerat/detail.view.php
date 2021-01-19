@@ -4,8 +4,27 @@
 use App\Models\User;
 
 ?>
+
+<script src="public/js/loadKomentare.js"> </script>
+<script src="public/js/deleteJS.js"> </script>
 <h1 >Aktuálny inzerát</h1>
 <hr/>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <?php if ($auth->isLogged()  && ($auth->getLoggedUser()->getId() === $data->getIdOwner() || $auth->getLoggedUser()->getType() === 'admin') ) { ?>
+            <a href="?c=Inzerat&a=Edit&id=<?= $data->getId() ?>" class="btn tlacidlo edit col-6">Editovať inzerát</a>
+            <a href="?c=Inzerat&a=Delete&id=<?= $data->getId() ?>" onclick="return onDelete()"  class="btn tlacidlo danger col-6">Vymazať inzerát</a>
+
+        <?php } ?>
+
+
+    </div>
+
+</div>
+
+
 
 <div class="container-fluid inzerat-detail">
 
@@ -44,21 +63,22 @@ use App\Models\User;
 
 </div>
 
+<hr/>
 
+<div >
+    <?php if ($auth->isLogged()){ ?>
+        <a href="?c=Inzerat&a=AddKomentar&id=<?= $data->getId() ?>" class="btn tlacidlo edit ">Pridaj Komentár</a>
+    <?php }?>
 
-
-<div class="container-fluid">
-    <div class="row">
-        <?php if ($auth->isLogged()  && ($auth->getLoggedUser()->getId() == $data->getIdOwner())){ ?>
-            <a href="?c=Inzerat&a=Edit&id=<?= $data->getId() ?>" class="btn tlacidlo edit col-6">Editovať inzerát</a>
-            <a href="?c=Inzerat&a=Delete&id=<?= $data->getId() ?>" class="btn tlacidlo danger col-6">Vymazať inzerát</a>
-
-        <?php } ?>
-
-
-
-
-
-    </div>
 
 </div>
+
+
+<div id="komentar-list" class="container-fluid">
+
+</div>
+
+
+
+
+

@@ -15,7 +15,7 @@ class InzeratJS {
 
             var html = "";
             data.forEach((inzerat)  => {
-                html += `<a href="?c=Inzerat&a=Detail&id= ${inzerat.id} " class="btn btn-large btn-block tlacidlo inzerat">
+                html += `<a href="?c=Inzerat&a=Detail&id=${inzerat.id}" class="btn btn-large btn-block tlacidlo inzerat">
                         <h3> ${inzerat.titulok}</h3>
                         <hr/>
 
