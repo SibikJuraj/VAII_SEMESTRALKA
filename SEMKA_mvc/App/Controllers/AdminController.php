@@ -79,7 +79,7 @@ class AdminController extends AControllerBase
                 $id = $_GET['id'];
 
                 $kategoria = Kategoria::getOne($id);
-                $inzeraty = Inzerat::getAll("idKategoria = ".$id);
+                $inzeraty = Inzerat::getAll("idKategoria = ?",[$id]);
 
                 foreach ($inzeraty as $inzerat) {
                     $inzerat->delete();

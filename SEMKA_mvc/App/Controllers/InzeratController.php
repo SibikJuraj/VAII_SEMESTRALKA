@@ -124,7 +124,7 @@ class InzeratController extends AControllerBase
             if (isset($_GET['id'])) {
                 $inzerat = Inzerat::getOne($_GET['id']);
 
-                $komentare = Komentar::getAll("idInzerat =" . $inzerat->getId());
+                $komentare = Komentar::getAll("idInzerat =?",[$inzerat->getId()]);
                 foreach ($komentare as $komentar) {
                     $komentar->delete();
                 }
@@ -158,14 +158,14 @@ class InzeratController extends AControllerBase
     public function filter() {
         $kategoria = (string)Kategoria::getOne($_GET['id'])->getNazov();
 
-        return $this->html(Inzerat::getAll(" idKategoria IN (".$_GET['id'].")",[],"id DESC"));
+        return $this->html(Inzerat::getAll(" idKategoria =?",[$_GET['id']],"id DESC"));
     }
 
     public function moje() {
         if(!$this->app->getAuth()->isLogged())
             return $this->redirect('?');
 
-        return $this->html(Inzerat::getAll(" idOwner IN (".$this->app->getAuth()->getLoggedUser()->getId().")",[],"id DESC"));
+        return $this->html(Inzerat::getAll(" idOwner =?",[$this->app->getAuth()->getLoggedUser()->getId()],"id DESC"));
 
     }
 

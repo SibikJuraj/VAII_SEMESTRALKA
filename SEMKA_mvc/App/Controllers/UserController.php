@@ -49,8 +49,8 @@ class UserController extends AControllerBase
 
         $user = User::getOne($idUser);
 
-        $komentare = Komentar::getAll("idAutor =".$idUser);
-        $inzeraty = Inzerat::getAll("idOwner =".$idUser);
+        $komentare = Komentar::getAll("idAutor =?",[$idUser]);
+        $inzeraty = Inzerat::getAll("idOwner =?",[$idUser]);
 
 
         foreach ($komentare as $komentar) {
