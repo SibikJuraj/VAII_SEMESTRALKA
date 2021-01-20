@@ -17,9 +17,12 @@ class InzeratController extends AControllerBase
 
     public function index()
     {
-        echo "<script>selected('inzerat')</script>";
+        echo "<script>selectedJS('inzerat')</script>";
         return $this->html(Inzerat::getAll("",[],"id DESC"));
     }
+
+
+    //region CRUD operácie s inzerátmi
 
     public function add()
     {
@@ -39,6 +42,8 @@ class InzeratController extends AControllerBase
         $obrazok = $formData['obrazok'];
 
         $koncovka = substr($obrazok, -4);
+
+
 
         switch ($koncovka) {
             case '.jpg':
@@ -85,7 +90,7 @@ class InzeratController extends AControllerBase
                         break;
                     default:
                         echo '<p class="danger ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
-                        return $this->html();
+                        return $this->html(Inzerat::getOne($_GET['id']));
                         break;
 
                 }
@@ -134,6 +139,9 @@ class InzeratController extends AControllerBase
         return $this->redirect('?');
     }
 
+    //endregion
+
+
 
     public function detail()
     {
@@ -143,18 +151,15 @@ class InzeratController extends AControllerBase
 
             return $this->html(Inzerat::getOne($_GET['id']));
 
-
-
     }
+
+    //region Filtrovanie inzerátov
 
     public function filter() {
         $kategoria = (string)Kategoria::getOne($_GET['id'])->getNazov();
 
-
-
         return $this->html(Inzerat::getAll(" idKategoria IN (".$_GET['id'].")",[],"id DESC"));
     }
-
 
     public function moje() {
         if(!$this->app->getAuth()->isLogged())
@@ -164,7 +169,7 @@ class InzeratController extends AControllerBase
 
     }
 
-
+    //endregion
 
 
     public function inzeraty()
@@ -184,6 +189,7 @@ class InzeratController extends AControllerBase
     }
 
 
+    //region Komentáre
 
     public function komentare()
     {
@@ -221,7 +227,7 @@ class InzeratController extends AControllerBase
 
     }
 
-
+    //endregion
 
 
 }

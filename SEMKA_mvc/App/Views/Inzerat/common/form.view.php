@@ -1,7 +1,7 @@
 <?php /** @var Array $data */
 /** @var \App\Core\AAuthenticator $auth */
 ?>
-<script src="public/js/kategoriePicker.js"> </script>
+<script src="public/js/inzeratJS/kategoriePicker.js"> </script>
 
 
 <div class="container-fluid ">

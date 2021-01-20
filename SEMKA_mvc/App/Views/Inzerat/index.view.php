@@ -1,7 +1,7 @@
 <?php /** @var Array $data */
 /** @var \App\Core\AAuthenticator $auth */
 ?>
-<script src="public/js/loadInzerat.js"> </script>
+<script src="public/js/inzeratJS/loadInzeraty.js"> </script>
 
 <h1 >Inzeráty</h1>
 

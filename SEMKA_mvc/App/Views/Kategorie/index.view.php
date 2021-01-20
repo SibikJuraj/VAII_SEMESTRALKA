@@ -1,10 +1,10 @@
 <?php /** @var Array $data */
 /** @var \App\Core\AAuthenticator $auth */
 ?>
-<script src="public/js/addKategoriu.js"> </script>
+<script src="public/js/kategoriaJS/addKategoriu.js"> </script>
 
 
-<h1 >Kategórie</h1>
+<h1>Kategórie</h1>
 
 <?php if ($auth->isLogged() && $auth->getLoggedUser()->getLogin() === 'admin') { ?>
     <div class="nastred">
@@ -24,7 +24,7 @@
 
 
 
-<div class="container">
+<div class="container" >
     <div class="row">
     <?php foreach ($data as $kategoria) { ?>
         <a href="?c=Inzerat&a=Filter&id=<?= $kategoria->getId() ?>" class="kategoria tlacidlo col-lg-2 col-md-3 col-sm-4 col-6 btn">

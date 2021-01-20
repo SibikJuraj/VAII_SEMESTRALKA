@@ -5,7 +5,6 @@ namespace App\Controllers;
 
 
 use App\Core\AControllerBase;
-use App\Core\Responses\Response;
 use App\Models\Inzerat;
 use App\Models\Kategoria;
 use App\Models\Komentar;
@@ -14,17 +13,16 @@ use App\Models\User;
 class AdminController extends AControllerBase
 {
 
-
     public function index()
     {
         if ($this->app->getAuth()->getLoggedUser()->getType() == 'admin')
             return $this->html();
 
-
         return $this->redirect('?');
     }
 
 
+    //region Správa používateľov
 
     public function allUsers() {
 
@@ -45,20 +43,17 @@ class AdminController extends AControllerBase
 
     }
 
+    //endregion
+
+    //region Správa Kategórií
 
     public function mazanieKategorii() {
         return $this->html(Kategoria::getAll());
     }
 
-    public function mazanieKomentarov() {
-        return $this->html(Komentar::getAll());
-    }
-
 
     public function deleteKategoria()
     {
-        if(!$this->app->getAuth()->isLogged())
-            return $this->redirect('?');
 
         if ($this->app->getAuth()->getLoggedUser()->getType() == 'admin') {
 
@@ -73,15 +68,21 @@ class AdminController extends AControllerBase
                 }
                 $kategoria->delete();
             }
+            return $this->redirect('?c=Admin&a=MazanieKategorii');
         }
-        return $this->redirect('?c=Admin&a=MazanieKategorii');
+        return $this->redirect('?');
     }
 
+    //endregion
+
+    //region Správa Komentarov
+
+    public function mazanieKomentarov() {
+        return $this->html(Komentar::getAll());
+    }
 
     public function deleteKomentar()
     {
-        if(!$this->app->getAuth()->isLogged())
-            return $this->redirect('?');
 
         if ($this->app->getAuth()->getLoggedUser()->getType() == 'admin') {
 
@@ -91,10 +92,11 @@ class AdminController extends AControllerBase
                 $komentar = Komentar::getOne($id);
                 $komentar->delete();
             }
+            return $this->redirect('?c=Admin&a=MazanieKomentarov');
         }
-        return $this->redirect('?c=Admin&a=MazanieKomentarov');
+        return $this->redirect('?');
     }
 
-
+    //endregion
 
 }

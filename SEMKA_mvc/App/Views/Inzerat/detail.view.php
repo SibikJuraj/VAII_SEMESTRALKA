@@ -5,7 +5,7 @@ use App\Models\User;
 
 ?>
 
-<script src="public/js/loadKomentare.js"> </script>
+<script src="public/js/inzeratJS/loadKomentare.js"> </script>
 <script src="public/js/deleteJS.js"> </script>
 <h1 >Aktuálny inzerát</h1>
 <hr/>

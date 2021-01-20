@@ -4,12 +4,12 @@
 class KomentarJS {
 
     constructor() {
-        this.getInzeraty();
-        setInterval(() => this.getInzeraty(), 2000);
+        this.getKomentare();
+        setInterval(() => this.getKomentare(), 2000);
     }
 
 
-    async getInzeraty() {
+    async getKomentare() {
         try {
             let response = await fetch('?c=Inzerat&a=Komentare');
             let data = await response.json();

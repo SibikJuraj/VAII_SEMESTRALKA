@@ -14,14 +14,10 @@ class KategorieController extends AControllerBase
 
     public function index()
     {
-        echo "<script>selected('kategorie')</script>";
+        echo "<script>selectedJS('kategorie')</script>";
         return $this->html(Kategoria::getAll());
     }
 
-    public function kategorie()
-    {
-        return $this->json(Kategoria::getAll());
-    }
 
 
     public function add() {

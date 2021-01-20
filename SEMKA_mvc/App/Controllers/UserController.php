@@ -23,7 +23,7 @@ class UserController extends AControllerBase
     }
 
 
-    public function zmenitHeslo()
+    public function changePassword()
     {
         $formData = $this->app->getRequest()->getPost();
         $user = $this->app->getAuth()->getLoggedUser();

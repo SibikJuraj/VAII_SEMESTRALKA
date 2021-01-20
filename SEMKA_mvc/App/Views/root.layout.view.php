@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-    <script src="public/js/selected.js"> </script>
+    <script src="public/js/selectedJS.js"> </script>
 
     <link rel="stylesheet" href="public/css/style.css">
 </head>
@@ -37,7 +37,7 @@
         <div class=" collapse navbar-collapse" id="navbarSupportedContent">
 
             <div >
-                <ul class="navbar-nav mr-auto" >
+                <ul class="navbar-nav mr-auto">
 
                     <li id="inzerat" class="nav-item ">
                         <a href="?c=Inzerat" class="btn btn-block tlacidlo ">Inzeráty</a>
@@ -64,11 +64,12 @@
 
                 <span class="float-right"> Prihlásený ako : <b><?=$auth->getLoggedUser()->getLogin() ?></b> </span>
                 <br>
-                <a href="?c=User&id=<?=$auth->getLoggedUser()->getId() ?>" class="float-right"><strong>Nastavenia profilu</strong></a>
-                <br>
                 <a href="?c=Login&a=Logout" class="float-right"><strong>Odhlásiť sa</strong></a>
                 <br>
+
+                <a href="?c=User&id=<?=$auth->getLoggedUser()->getId() ?>" class="btn btn-block tlacidlo"><strong>Nastavenia profilu</strong></a>
                 <a href="?c=Inzerat&a=Moje" class="btn btn-block tlacidlo">Moje inzeráty</a>
+
             <?php if ($auth->getLoggedUser()->getType() === 'admin') { ?>
                     <br>
                 <a href="?c=Admin" class="btn tlacidlo danger float-right">Správa stránky</a>
