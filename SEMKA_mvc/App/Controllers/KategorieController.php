@@ -35,23 +35,21 @@ class KategorieController extends AControllerBase
         $chybneUdaje = 0;
 
         $obrazok = $formData['obrazok'];
-        $koncovka = substr($obrazok, -3);
+        $koncovka = substr($obrazok, -4);
 
 
 
         $kategorie = Kategoria::getAll();
         foreach ($kategorie as $kategoria) {
-            if ($kategoria->getNazov() === (string)$formData['nazov']) {
+            if ($kategoria->getNazov() == (string)$formData['nazov']) {
                 echo '<p class="danger ">Kategória s takýmto názvom už existuje!</p>';
                 $chybneUdaje++;
             }
         }
 
-
-
         switch ($koncovka) {
-            case 'jpg':
-            case 'png':
+            case '.jpg':
+            case '.png':
                 break;
             default:
                 echo '<p class="danger ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';

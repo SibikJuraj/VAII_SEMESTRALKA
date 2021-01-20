@@ -21,22 +21,18 @@ class KomentarJS {
 
                 if (komentar.idInzerat === $_GET('id')) {
                     html += `<div class="row inzerat-detail " >
-                        <div class="col-6">
-                                <p>Pridal : <strong> ${komentar.autor.login} </strong> </p>
-                            </div>
-                            
-                            <div class="col-lg-9 col-md-8 col-sm-8 col-7">
-                                <p>
-                                   
-                                   ${komentar.text} 
-                                </p>
-                            </div>
-
+                                <div class="col-6">
+                                    <p>Pridal : <strong> ${komentar.autor.login} </strong> </p>
+                                </div>
+                                    
+                                <div class="col-12" style="word-wrap: break-word">
+                                    <p>
+                                       
+                                       ${komentar.text} 
+                                    </p>
+                                </div> 
                            
-                           
-                           
-                            
-                        </div>`
+                              </div>`
                     list.innerHTML = html;
                 }
 

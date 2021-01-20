@@ -5,7 +5,7 @@
 <script src="public/js/setUsersTypeJS.js"> </script>
 
 <h1 >Používatelia</h1>
-
+<hr/>
 
 <div class="container">
     <div id="users-list" class="row">

@@ -8,8 +8,8 @@
 
 <?php if ($auth->isLogged() && $auth->getLoggedUser()->getLogin() === 'admin') { ?>
     <div class="nastred">
-        <a id="addKategoriu" class="btn tlacidlo">+ Pridaj kategóriu +</a>
-        <div id="newK">
+        <a id="addKategoriu" class="btn tlacidlo" >+ Pridaj kategóriu +</a>
+        <div id="newK" class="row" style="display: none">
 
 
         </div>

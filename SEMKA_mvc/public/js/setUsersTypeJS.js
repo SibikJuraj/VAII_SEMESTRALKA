@@ -9,21 +9,21 @@ class UserJS {
 
     async getUsers() {
         try {
-            let response = await fetch('?c=User&a=setUsersType');
+            let response = await fetch('?c=Admin&a=setUsersType');
             let data = await response.json();
 
             var list = document.getElementById('users-list');
             var html = "";
 
             data.forEach((user)  => {
-                html += `<div class="offset-1">
+                html += `<div class="userType" >
                             <div class=" col-lg-2 col-md-3 col-sm-4 col-6" >
                                 <a class="btn btn-large tlacidlo " >
                                     <div>
                                     
                                     <h3>${user.login} </h3>
                                     <p>
-                                        ID : ${user.id}
+                                        ${user.login === 'admin' ? `` : `ID : ${user.id}`}
                                     </p>
                                     
                                     </div>

@@ -10,17 +10,23 @@ class KategoriaAdd {
     kategoriaAdd() {
        try {
            var list = document.getElementById('newK');
-           var html = document.createElement('div');
+           if (list.style.display === "none") {
+               list.style.display = "block";
+           } else {
+               list.style.display = "none";
+           }
 
-           html = `    <form method="post" action="?c=Kategorie&a=Add">
+           var html = "";
+
+           html = `    <form class="form-row userType" method="post" action="?c=Kategorie&a=Add">
                             
-                                <div class="form-group nastred">
+                                <div class="form-group col-12 col-md-5">
                                     <label for="nazov">Názov kategórie:</label>
                                     <br/>
                                     <input class="form-control nastred" id="nazov" type="text" name="nazov" value="" required>
                                     <br/>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-12 col-md-5">
                                     <label for="obrazok">URL obrázka:</label>
                                     <br/>
                                     <input class="form-control nastred" id="obrazok" type="url" name="obrazok" value="" required>
@@ -29,7 +35,7 @@ class KategoriaAdd {
                                 </div>
                     
                             
-                            <input type="submit" name="submit" value="Pridať kategóriu" class="btn tlacidlo"> 
+                            <input type="submit" name="submit" value="Pridať kategóriu" class="btn tlacidlo nastred col-12 col-md-2"> 
                            
                     
                         </form>`

@@ -38,11 +38,11 @@ class InzeratController extends AControllerBase
 
         $obrazok = $formData['obrazok'];
 
-        $koncovka = substr($obrazok, -3);
+        $koncovka = substr($obrazok, -4);
 
         switch ($koncovka) {
-            case 'jpg':
-            case 'png':
+            case '.jpg':
+            case '.png':
                 break;
             default:
                 echo '<p class="danger ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
@@ -51,7 +51,7 @@ class InzeratController extends AControllerBase
 
         }
 
-        $inzerat = new Inzerat($formData['titulok'], $formData['text'],(float)$cena, $formData['obrazok'],$formData['idOwner'],$formData['idKategoria']);
+        $inzerat = new Inzerat($formData['titulok'], $formData['text'],(float) $formData['cena'], $formData['obrazok'],$formData['idOwner'],$formData['idKategoria']);
         $inzerat->save();
 
 
@@ -64,7 +64,7 @@ class InzeratController extends AControllerBase
         if(!$this->app->getAuth()->isLogged() || $this->app->getAuth()->getLoggedUser()->getId() != Inzerat::getOne($_GET['id'])->getIdOwner())
             return $this->redirect('?');
 
-        if ($this->app->getAuth()->getLoggedUser()->getId() === Inzerat::getOne($_GET['id'])->getIdOwner() || $this->app->getAuth()->getLoggedUser()->getType() === 'admin')  {
+        if ($this->app->getAuth()->getLoggedUser()->getId() == Inzerat::getOne($_GET['id'])->getIdOwner() || $this->app->getAuth()->getLoggedUser()->getType() == 'admin')  {
 
             $formData = $this->app->getRequest()->getPost();
             if (isset($formData['id'])) {
@@ -74,6 +74,23 @@ class InzeratController extends AControllerBase
                 $inzerat->setTitulok($formData['titulok']);
                 $inzerat->setText($formData['text']);
                 $inzerat->setCena((float)$formData['cena']);
+
+                $obrazok = $formData['obrazok'];
+
+                $koncovka = substr($obrazok, -4);
+
+                switch ($koncovka) {
+                    case '.jpg':
+                    case '.png':
+                        break;
+                    default:
+                        echo '<p class="danger ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
+                        return $this->html();
+                        break;
+
+                }
+
+
                 $inzerat->setObrazok($formData['obrazok']);
                 $inzerat->setIdKategoria($formData['idKategoria']);
                 $inzerat->save();
@@ -97,7 +114,7 @@ class InzeratController extends AControllerBase
             return $this->redirect('?');
 
 
-        if ($this->app->getAuth()->getLoggedUser()->getId() === Inzerat::getOne($_GET['id'])->getIdOwner() || $this->app->getAuth()->getLoggedUser()->getType() === 'admin') {
+        if ($this->app->getAuth()->getLoggedUser()->getId() == Inzerat::getOne($_GET['id'])->getIdOwner() || $this->app->getAuth()->getLoggedUser()->getType() == 'admin') {
 
             if (isset($_GET['id'])) {
                 $inzerat = Inzerat::getOne($_GET['id']);
@@ -112,8 +129,9 @@ class InzeratController extends AControllerBase
 
 
             }
-            return $this->redirect('?');
+
         }
+        return $this->redirect('?');
     }
 
 
@@ -136,6 +154,16 @@ class InzeratController extends AControllerBase
 
         return $this->html(Inzerat::getAll(" idKategoria IN (".$_GET['id'].")",[],"id DESC"));
     }
+
+
+    public function moje() {
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
+
+        return $this->html(Inzerat::getAll(" idOwner IN (".$this->app->getAuth()->getLoggedUser()->getId().")",[],"id DESC"));
+
+    }
+
 
 
 
@@ -181,7 +209,8 @@ class InzeratController extends AControllerBase
             return $this->redirect('?');
 
         $formData = $this->app->getRequest()->getPost();
-        if (!isset($formData['text'])) return $this->html();
+        if (!isset($formData['text']))
+            return $this->html();
 
 
         $komentar = new Komentar($formData['text'],$formData['idAutor'], $formData['idInzerat']);

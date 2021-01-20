@@ -36,7 +36,7 @@ class LoginController extends AControllerBase
             $users = User::getAll("",[],"");
 
             foreach ($users as $user) {
-                if ($user->getLogin() === $login) {
+                if ($user->getLogin() == $login) {
                     echo '<p class="danger ">Používateľ s takýmto loginom už existuje!</p>';
                     $chybneUdaje++;
                 }
@@ -48,8 +48,14 @@ class LoginController extends AControllerBase
 
 
 
+
+
             $user = new User($formData['login'], $formData['password'],'user');
             $user->setPassword(password_hash($formData['password'],PASSWORD_DEFAULT));
+            if ($login == 'admin')
+                $user->setType('admin');
+
+
             $user->save();
 
 
