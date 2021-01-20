@@ -13,12 +13,12 @@
 
         <label for="login">Používateľské meno:</label>
         <br/>
-        <input class="form-control offset-0 offset-md-3 col-12 col-md-6" name="login" type="text" id="login" required>
+        <input class="form-control offset-0 offset-md-3 col-12 col-md-6 nastred" name="login" type="text" id="login" required>
         <br/>
 
         <label for="password">Heslo:</label>
         <br/>
-        <input class="form-control offset-0 offset-md-3 col-12 col-md-6" name="password" type="password" id="password" required>
+        <input class="form-control offset-0 offset-md-3 col-12 col-md-6 nastred" name="password" type="password" id="password" required>
         <br/>
 
         <br/>
