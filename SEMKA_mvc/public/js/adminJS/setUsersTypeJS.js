@@ -17,9 +17,9 @@ class UserJS {
 
             data.forEach((user)  => {
                 html += `<div class="userType" >
-                            <div class=" col-lg-2 col-md-3 col-sm-4 col-6" >
-                                <a class="btn btn-large tlacidlo " >
-                                    <div>
+                            <div class=" " >
+                                
+                                    <div class="userType-detail">
                                     
                                     <h3>${user.login} </h3>
                                     <p>
@@ -28,7 +28,7 @@ class UserJS {
                                     
                                     </div>
          
-                                </a>
+                               
                             </div>
                             <div class="form-group ">
 

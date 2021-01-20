@@ -18,7 +18,7 @@ class KategoriaAdd {
 
            var html = "";
 
-           html = `    <form class="form-row userType" method="post" action="?c=Kategorie&a=Add">
+           html = `    <form class="form-row " method="post" action="?c=Kategorie&a=Add">
                             
                                 <div class="form-group col-12 col-md-5">
                                     <label for="nazov">Názov kategórie:</label>

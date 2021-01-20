@@ -22,13 +22,14 @@
 </head>
 
 <body>
-
-<header class="dark sticky-top">
-
-    <nav class="row navbar navbar-expand-lg navbar-light  ">
+<h1 class="my-0 mr-md-auto font-weight-normal nadpis"><strong><?= \App\Config\Configuration::APP_NAME ?></strong></h1>
+<header class="dark sticky-top nav-style">
 
 
-        <button class="navbar-toggler  " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class=" row navbar navbar-expand-lg navbar-light ">
+
+
+        <button class=" navbar-toggler  " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -53,34 +54,43 @@
 
         </div>
 
-
-
-
-
-
         <div >
+            <ul class="navbar-nav ml-auto nav-style-right">
+                <?php if ($auth->isLogged()) { ?>
+                    <li >
+                        Prihlásený ako : <b><?= $auth->getLoggedUser()->getLogin() ?></b>
+                    </li>
+                    <li class="nav-style-item">
+                        <a href="?c=Login&a=Logout" class="float-right "><strong>Odhlásiť sa</strong></a>
+                    </li>
 
-            <?php if ($auth->isLogged()) { ?>
-
-                <span class="float-right"> Prihlásený ako : <b><?=$auth->getLoggedUser()->getLogin() ?></b> </span>
-                <br>
-                <a href="?c=Login&a=Logout" class="float-right"><strong>Odhlásiť sa</strong></a>
-                <br>
-
-                <a href="?c=User&id=<?=$auth->getLoggedUser()->getId() ?>" class="btn btn-block tlacidlo"><strong>Nastavenia profilu</strong></a>
-                <a href="?c=Inzerat&a=Moje" class="btn btn-block tlacidlo">Moje inzeráty</a>
-
-            <?php if ($auth->getLoggedUser()->getType() === 'admin') { ?>
-                    <br>
-                <a href="?c=Admin" class="btn tlacidlo danger float-right">Správa stránky</a>
-
-            <?php } } else { ?>
-                <a href="?c=Login&a=Login" ><strong>Prihlásiť sa</strong></a>
-            <?php } ?>
-
+                <?php } else { ?>
+                <li>
+                    <a href="?c=Login&a=Login" ><strong>Prihlásiť sa</strong></a>
+                </li>
+                <?php } ?>
+            </ul>
         </div>
 
-    </nav>
+
+
+</nav>
+        <div >
+            <?php if ($auth->isLogged()) { ?>
+            <?php if ($auth->getLoggedUser()->getType() === 'admin') { ?>
+
+                <a href="?c=Admin" class="btn tlacidlo danger float-right">Správa stránky</a>
+
+            <?php }?>
+                <a href="?c=User&id=<?=$auth->getLoggedUser()->getId() ?>" class="btn tlacidlo float-right"><strong>Nastavenia profilu</strong></a>
+                <a href="?c=Inzerat&a=Moje" class="btn  tlacidlo float-right">Moje inzeráty</a>
+            <?php } ?>
+
+
+
+        </div>
+<br>
+
 
 
 
@@ -88,8 +98,12 @@
 </header>
 
 
-<div class="web-content">
+<div class="web-content ">
+    <br>
+
     <?= $contentHTML ?>
 </div>
 </body>
 </html>
+
+

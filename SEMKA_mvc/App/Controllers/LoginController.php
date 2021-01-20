@@ -24,7 +24,7 @@ class LoginController extends AControllerBase
             $chybneUdaje = 0;
 
             if ($formData['password_confirmation'] != $formData['password']) {
-                echo '<p class="danger ">Heslá sa nezhodujú</p>';
+                echo '<p class="text-center text-danger mb-3 ">Heslá sa nezhodujú</p>';
                 $chybneUdaje++;
 
             }
@@ -37,7 +37,7 @@ class LoginController extends AControllerBase
 
             foreach ($users as $user) {
                 if ($user->getLogin() == $login) {
-                    echo '<p class="danger ">Používateľ s takýmto loginom už existuje!</p>';
+                    echo '<p class="text-center text-danger mb-3 ">Používateľ s takýmto loginom už existuje!</p>';
                     $chybneUdaje++;
                 }
 

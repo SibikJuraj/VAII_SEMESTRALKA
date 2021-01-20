@@ -26,14 +26,14 @@ class InzeratController extends AControllerBase
 
     public function add()
     {
-
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
 
         $formData = $this->app->getRequest()->getPost();
         $formData['zoznamKategorii'] = Kategoria::getAll();
 
 
-        if(!$this->app->getAuth()->isLogged())
-            return $this->redirect('?');
+
 
 
         if (!isset($formData['titulok'])) return $this->html();
@@ -50,7 +50,7 @@ class InzeratController extends AControllerBase
             case '.png':
                 break;
             default:
-                echo '<p class="danger ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
+                echo '<p class="text-center text-danger mb-3 ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
                 return $this->html();
                 break;
 
@@ -89,7 +89,7 @@ class InzeratController extends AControllerBase
                     case '.png':
                         break;
                     default:
-                        echo '<p class="danger ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
+                        echo '<p class="text-center text-danger mb-3 ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
                         return $this->html(Inzerat::getOne($_GET['id']));
                         break;
 
@@ -149,7 +149,7 @@ class InzeratController extends AControllerBase
             return $this->redirect('?');
 
 
-            return $this->html(Inzerat::getOne($_GET['id']));
+        return $this->html(Inzerat::getOne($_GET['id']));
 
     }
 

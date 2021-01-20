@@ -8,8 +8,7 @@ body {
 
 
 .dark {
-    background-color: rgba(38, 38, 38, 0.9);
-
+    background-color: rgba(38, 38, 38, 0.95);
 }
 
 .danger {
@@ -17,12 +16,26 @@ body {
 }
 
 .edit {
-    background-color: #5bc0de !important;
+    background-color: #3a67d6 !important;
 }
+
+
 
 .userType {
     margin: 7px;
+    background-color: #3a67d6;
+    border-radius: 15px;
+    border: #3a67d6 5px solid;
+    text-align: center;
 }
+
+.userType-detail {
+    background-color: #253629;
+    border-radius: 15px;
+    border: #253629 5px solid;
+
+}
+
 
 
 .tlacidlo {
@@ -50,16 +63,16 @@ body {
 }
 
 
+.kategoria {
+    color: #262626;
+    text-align: center;
+}
 
 .kategoria img{
     width: 85%;
     height:auto;
 }
 
-.kategoria {
-    color: #262626;
-    text-align: center;
-}
 
 
 .inzerat {
@@ -148,7 +161,6 @@ body {
 }
 
 
-
 .icena {
     padding-left: 10px;
     text-align: left ;
@@ -166,6 +178,25 @@ body {
     text-align: center;
 }
 
+.navrch {
+    margin-top: 50px;
+    border-top: 0;
+    vertical-align: top;
+    align-items: normal;
+}
+
+
+.komentar {
+    border-radius: 10px;
+    text-align: left;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: #cccccc;
+    background-color: #424242;
+    border: 5px #424242 solid;
+    font-weight: normal !important;
+}
+
 
 h1 {
     text-align: center;
@@ -176,12 +207,41 @@ hr {
     font-weight: bold;
 }
 
+.nadpis {
+    color: #f2f2f2;
+    font-family: Yellowtail;
+}
+
+
 table {
     width: 100%;
     height: auto;
     text-align: center;
 }
 
+.nav-style {
+    border-bottom: 3px #253629 ridge ;
+
+}
+
+.nav-style-item {
+    margin-left: 50px;
+}
+
+.nav-style-right {
+    border: #cccccc 50px;
+    border-radius: 5px;
+
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+    font-size: 20px;
+    font-stretch: extra-condensed;
+
+
+    font-weight: normal !important;
+
+}
 
 
 .navbar-toggler {

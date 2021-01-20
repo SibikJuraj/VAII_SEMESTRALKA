@@ -18,6 +18,11 @@ class KategorieController extends AControllerBase
         return $this->html(Kategoria::getAll());
     }
 
+    public function kategorie()
+    {
+        return $this->json(Kategoria::getAll());
+    }
+
 
 
     public function add() {
@@ -38,7 +43,7 @@ class KategorieController extends AControllerBase
         $kategorie = Kategoria::getAll();
         foreach ($kategorie as $kategoria) {
             if ($kategoria->getNazov() == (string)$formData['nazov']) {
-                echo '<p class="danger ">Kategória s takýmto názvom už existuje!</p>';
+                echo '<p class="text-center text-danger mb-3 ">Kategória s takýmto názvom už existuje!</p>';
                 $chybneUdaje++;
             }
         }
@@ -48,7 +53,7 @@ class KategorieController extends AControllerBase
             case '.png':
                 break;
             default:
-                echo '<p class="danger ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
+                echo '<p class="text-center text-danger mb-3 ">Zlý formát obrázka! Akceptované formáty : jpg a png</p>';
                 $chybneUdaje++;
                 break;
 

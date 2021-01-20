@@ -15,6 +15,10 @@ class AdminController extends AControllerBase
 
     public function index()
     {
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
+
+
         if ($this->app->getAuth()->getLoggedUser()->getType() == 'admin')
             return $this->html();
 
@@ -25,6 +29,9 @@ class AdminController extends AControllerBase
     //region Správa používateľov
 
     public function allUsers() {
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
+
 
         if(!$this->app->getAuth()->isLogged() || $this->app->getAuth()->getLoggedUser()->getType() != "admin")
             return $this->redirect('?c=User&a=Settings&id='.$this->app->getAuth()->getLoggedUser()->getId());
@@ -35,6 +42,9 @@ class AdminController extends AControllerBase
 
 
     public function setUsersType() {
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
+
         if(!$this->app->getAuth()->isLogged() || $this->app->getAuth()->getLoggedUser()->getType() != 'admin')
             return $this->redirect('?c=User&a=Settings&id='.$this->app->getAuth()->getLoggedUser()->getId());
 
@@ -48,12 +58,20 @@ class AdminController extends AControllerBase
     //region Správa Kategórií
 
     public function mazanieKategorii() {
-        return $this->html(Kategoria::getAll());
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
+
+        if ($this->app->getAuth()->getLoggedUser()->getType() == 'admin')
+            return $this->html(Kategoria::getAll());
+
+        return $this->redirect('?');
     }
 
 
     public function deleteKategoria()
     {
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
 
         if ($this->app->getAuth()->getLoggedUser()->getType() == 'admin') {
 
@@ -78,11 +96,25 @@ class AdminController extends AControllerBase
     //region Správa Komentarov
 
     public function mazanieKomentarov() {
-        return $this->html(Komentar::getAll());
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
+
+
+        if ($this->app->getAuth()->getLoggedUser()->getType() == 'admin')
+            return $this->html(Komentar::getAll());
+
+
+
+        return $this->redirect('?');
+
+
     }
 
     public function deleteKomentar()
     {
+        if(!$this->app->getAuth()->isLogged())
+            return $this->redirect('?');
+
 
         if ($this->app->getAuth()->getLoggedUser()->getType() == 'admin') {
 

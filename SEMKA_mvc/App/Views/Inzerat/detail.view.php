@@ -74,7 +74,7 @@ use App\Models\User;
 </div>
 
 
-<div id="komentar-list" class="container-fluid">
+<div id="komentar-list" class="container-fluid ">
 
 </div>
 

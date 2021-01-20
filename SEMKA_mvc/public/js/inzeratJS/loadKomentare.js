@@ -20,7 +20,7 @@ class KomentarJS {
             data.forEach((komentar)  => {
 
                 if (komentar.idInzerat === $_GET('id')) {
-                    html += `<div class="row inzerat-detail " >
+                    html += `<div class="row komentar" >
                                 <div class="col-6">
                                     <p>Pridal : <strong> ${komentar.autor.login} </strong> </p>
                                 </div>
